@@ -1,0 +1,6 @@
+{
+  "name": "imu/qr-system",
+  "description": "IMU QR Code Generation System",
+  "type": "project",
+  "require": {}
+}
