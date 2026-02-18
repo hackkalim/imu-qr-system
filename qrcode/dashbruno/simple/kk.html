@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akejo Media | The Global Standard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --yellow: #FFD60A;
+            --gray: #2b2d42;
+            --lightgray: #f8f9fa;
+            --green: #2D6A4F;
+            --lightgreen: #D8F3DC;
+            --orange: #FB8500;
+            --chocolate: #3d2b1f;
+            --soft-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray); line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+/* --- SUBMENU DESIGN --- */
+.has-submenu {
+    position: relative; /* Essential for positioning the dropdown */
+}
+
+.submenu {
+    position: absolute;
+    top: 100%; /* Sits right below the header */
+    left: 0;
+    background: var(--white);
+    min-width: 180px;
+    list-style: none;
+    padding: 15px 0;
+    margin: 0;
+    display: none; /* Hidden by default */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    border-top: 3px solid var(--orange); /* Adds that designer touch */
+    z-index: 2000;
+}
+
+.submenu li {
+    padding: 0; /* Resets padding for dropdown items */
+}
+
+.submenu a {
+    padding: 10px 25px;
+    display: block;
+    color: var(--chocolate);
+    font-size: 13px;
+    text-transform: none; /* Keeps it looking clean */
+}
+
+.submenu a::after {
+    display: none; /* Removes the underline animation from submenu links */
+}
+
+.submenu a:hover {
+    background: var(--lightgreen);
+    color: var(--green);
+}
+
+/* SHOW SUBMENU ON HOVER */
+.has-submenu:hover .submenu {
+    display: block;
+    animation: fadeInSlide 0.3s ease forwards;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+        .top-bar { background: var(--chocolate); height: 5px; width: 100%; }
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 5%; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--chocolate); letter-spacing: -1px; }
+        .logo span { color: var(--orange); }
+
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a { text-decoration: none; color: var(--gray); font-weight: 600; font-size: 14px; transition: 0.3s; position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--orange); transition: 0.3s; }
+        nav a:hover::after { width: 100%; }
+
+        .auth-btns { display: flex; gap: 15px; }
+        .btn { padding: 12px 28px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.4s; font-size: 14px; }
+        .btn-sign { background: var(--lightgray); color: var(--chocolate); }
+        .btn-signup { background: var(--chocolate); color: var(--yellow); box-shadow: 0 10px 20px rgba(61, 43, 31, 0.2); }
+        .btn-signup:hover { background: var(--orange); color: white; transform: translateY(-3px); }
+
+        /* --- PARTY 1: HERO SLIDESHOW --- */
+        .party-1 {
+            height: 85vh; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-align: center;
+        }
+        .slide-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .slide {
+            position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center;
+            opacity: 0; transition: transform 6s ease, opacity 2s ease; transform: scale(1.1);
+        }
+        .slide.active { opacity: 1; transform: scale(1); }
+        .overlay { position: absolute; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)); }
+
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; margin-bottom: 20px; font-style: italic; }
+        .hero-text p { max-width: 750px; margin: 0 auto; font-size: 18px; font-weight: 300; letter-spacing: 0.5px; opacity: 0.9; }
+
+        /* --- PARTY 2: ELEGANT SPLIT --- */
+        .party-2 { display: flex; padding: 100px 8%; gap: 80px; align-items: center; }
+        .p2-img { 
+            flex: 1; height: 500px; border-radius: 30px; overflow: hidden;
+            box-shadow: var(--soft-shadow); position: relative;
+        }
+        .p2-img img { width: 100%; height: 100%; object-fit: cover; }
+        .p2-content { flex: 1; }
+        .p2-content h2 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--chocolate); margin-bottom: 25px; }
+        .p2-content p { font-size: 18px; color: #666; margin-bottom: 30px; }
+
+        /* --- PARTY 3: QUOTE SECTION --- */
+        .party-3 { 
+            padding: 120px 10%; text-align: center; 
+            background: linear-gradient(to right, var(--lightgreen), var(--white));
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .party-3 h2 { font-family: 'Playfair Display', serif; font-size: 50px; color: var(--green); margin-bottom: 30px; font-style: italic; }
+        .party-3 p { font-size: 24px; color: var(--chocolate); max-width: 900px; margin: 0 auto; line-height: 1.6; font-weight: 600; }
+
+        /* --- PARTY 4: MODERN NEWS GRID --- */
+        .party-4 { padding: 100px 5%; background: var(--lightgray); }
+        .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+        .news-header h2 { font-family: 'Playfair Display', serif; font-size: 42px; position: relative; }
+        .news-header h2::after { content: ''; position: absolute; width: 60px; height: 4px; background: var(--orange); bottom: -10px; left: 0; }
+        .btn-all { padding: 12px 35px; border: 2px solid var(--chocolate); border-radius: 50px; text-decoration: none; color: var(--chocolate); font-weight: 800; transition: 0.3s; }
+        .btn-all:hover { background: var(--chocolate); color: white; }
+
+        .grid-15 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; }
+        .card { 
+            background: var(--white); border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.4s; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .c-img { height: 160px; width: 100%; background: #eee; }
+        .c-body { padding: 20px; }
+        .c-body span { color: var(--orange); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .c-body h4 { margin-top: 10px; font-size: 15px; color: var(--chocolate); font-weight: 700; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--chocolate); color: white; padding: 100px 8% 40px; }
+        .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .f-logo { font-family: 'Playfair Display', serif; font-size: 35px; margin-bottom: 20px; color: var(--yellow); }
+        .f-col h4 { margin-bottom: 25px; color: var(--orange); font-size: 18px; }
+        .f-col li { list-style: none; margin-bottom: 12px; opacity: 0.7; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .f-col li:hover { opacity: 1; color: var(--yellow); }
+        .f-bottom { margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 13px; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<header>
+    <div class="logo">Akejo<span>Media</span></div>
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li class="has-submenu">
+            <a href="#">Entertainment</a>
+            <ul class="submenu">
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Movie</a></li>
+                <li><a href="#">Daily News</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <a href="#">Sport</a>
+            <ul class="submenu">
+                <li><a href="#">Football</a></li>
+                <li><a href="#">Basketball</a></li>
+                <li><a href="#">Tennis</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Advanced</a></li>
+        <li><a href="#">Market</a></li>
+        <li><a href="#">Travel</a></li>
+    </ul>
+</nav>
+    <div class="auth-btns">
+        <button class="btn btn-sign">Sign In</button>
+        <button class="btn btn-signup">Sign Up</button>
+    </div>
+</header>
+
+<section class="party-1">
+    <div class="slide-container" id="slideshow">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1600')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1476242484419-cf5c1d4ee04b?auto=format&fit=crop&w=1600')"></div>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-text">
+        <h1>Welcome to Akejo Media</h1>
+        <p>Adfgsdfgjfgksdgfgsdgajfggfgfgfgfgfgfgfgs asjfajfgkgfkgfjgsfhsd asjfgkfkgfjsd asjfjgfkgfkgsfhsd ahjsfhsgjkfkhf asjhdfhgfd asdjhfshdgksf asjhdfhjsdhd.</p>
+    </div>
+</section>
+
+<section class="party-2">
+    <div class="p2-img">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800" alt="Technology">
+    </div>
+    <div class="p2-content">
+        <h2>The Pulse of the Global South</h2>
+        <p>Akejo Media is redefining how we consume news in 2026. From deep market analysis in Bujumbura to international sports highlights, we bring you closer to the stories that shape our world.</p>
+        <button class="btn btn-signup">Explore Our Story</button>
+    </div>
+</section>
+
+<section class="party-3">
+    <h2>Elegance in Every Word</h2>
+    <p>"Akejo Media represents the bridge between traditional values and future innovation. We use colors that represent the earth, the sun, and the growth of our beautiful continent."</p>
+</section>
+
+<section class="party-4">
+    <div class="news-header">
+        <h2>Latest News Day</h2>
+        <a href="#" class="btn-all">View All</a>
+    </div>
+    <div class="grid-15" id="dynamicGrid">
+        </div>
+</section>
+
+<section class="grid-section" style="background: var(--lightgray);">
+    <div class="section-header">
+        <h2>Market Watch</h2>
+        <a href="#" class="btn-all">View Trends</a>
+    </div>
+    <div class="grid-15" id="marketGrid"></div>
+</section>
+
+<section class="grid-section">
+    <div class="section-header">
+        <h2>Travel & Culture</h2>
+        <a href="#" class="btn-all">Explore Destinations</a>
+    </div>
+    <div class="grid-15" id="travelGrid"></div>
+</section>
+
+
+<footer>
+    <div class="f-grid">
+        <div class="f-col">
+            <div class="f-logo">Akejo Media</div>
+            <p>The global authority on news, market trends, and travel, delivered with a touch of sweetness and beauty.</p>
+        </div>
+        <div class="f-col">
+            <h4>Sections</h4>
+            <ul><li>Sport News</li><li>Travel Hub</li><li>Market Watch</li><li>Advanced Tech</li></ul>
+        </div>
+        <div class="f-col">
+            <h4>Quick Links</h4>
+            <ul><li>Join the Team</li><li>Terms of Service</li><li>Privacy Policy</li><li>FAQ</li></ul>
+        </div>
+        <div class="f-col">
+            <h4>Connect</h4>
+            <ul><li>Instagram</li><li>Twitter (X)</li><li>LinkedIn</li><li>Facebook</li></ul>
+        </div>
+    </div>
+    <div class="f-bottom">
+        &copy; 2026 Akejo Media Group. Created with passion and sweetness for the people of Burundi and the world.
+    </div>
+</footer>
+
+<script>
+    // PART 1 Slideshow
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+    function rotateSlides() {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }
+    setInterval(rotateSlides, 5000);
+
+    // PART 4 Grid Generator (15 Cards)
+    const grid = document.getElementById('dynamicGrid');
+    const categories = ['Market', 'Travel', 'Sport', 'News', 'Tech'];
+    for(let i=1; i<=15; i++) {
+        const cat = categories[Math.floor(Math.random()*categories.length)];
+        grid.innerHTML += `
+            <div class="card">
+                <div class="c-img" style="background: url('https://picsum.photos/seed/${i+50}/400/250') center/cover"></div>
+                <div class="c-body">
+                    <span>${cat}</span>
+                    <h4>A wonderful insight into the news of the day and future trends...</h4>
+                </div>
+            </div>
+        `;
+    }
+
+
+    // Adding logic to populate the new grids
+    populateGrid('marketGrid', 'Finance', 300);
+    populateGrid('travelGrid', 'Destinations', 400);
+
+</script>
+
+
+<style>
+    :root {
+        --white: #ffffff;
+        --yellow: #FFD60A;
+        --gray: #2b2d42;
+        --lightgray: #f8f9fa;
+        --green: #2D6A4F;
+        --lightgreen: #D8F3DC;
+        --orange: #FB8500;
+        --chocolate: #3d2b1f;
+        --soft-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray); line-height: 1.6; overflow-x: hidden; }
+
+    /* --- NAVIGATION --- */
+    .top-bar { background: var(--chocolate); height: 5px; width: 100%; }
+    header {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px 5%; background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--chocolate); letter-spacing: -1px; flex-shrink: 0; }
+    .logo span { color: var(--orange); }
+
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    nav a { text-decoration: none; color: var(--gray); font-weight: 600; font-size: 14px; transition: 0.3s; padding: 10px 0; display: block; }
+    
+    /* SUBMENU LOGIC */
+    .has-submenu { position: relative; }
+    .submenu {
+        position: absolute; top: 100%; left: 0; background: var(--white);
+        min-width: 180px; list-style: none; padding: 15px 0; display: none;
+        box-shadow: var(--soft-shadow); border-radius: 12px; border-top: 3px solid var(--orange);
+    }
+    .submenu a { padding: 8px 20px; text-transform: none; }
+    .has-submenu:hover .submenu { display: block; animation: fadeInSlide 0.3s ease forwards; }
+
+    .auth-btns { display: flex; gap: 10px; }
+
+    /* --- GRID SYSTEM --- */
+    .grid-section, .party-4 { padding: 60px 5%; }
+    .section-header, .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    
+    /* Responsive Grid */
+    .grid-15 { 
+        display: grid; 
+        grid-template-columns: repeat(5, 1fr); /* Desktop: 5 columns */
+        gap: 20px; 
+    }
+
+    .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+    .card:hover { transform: translateY(-5px); }
+    .c-img { height: 150px; width: 100%; background: #eee; background-size: cover; }
+    .c-body { padding: 15px; }
+    .c-body span { color: var(--orange); font-size: 10px; font-weight: 800; text-transform: uppercase; }
+    .c-body h4 { font-size: 13px; margin-top: 5px; font-weight: 700; color: var(--chocolate); }
+
+    /* --- HERO --- */
+    .party-1 { height: 70vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
+    .slide-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    .slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: 2s; }
+    .slide.active { opacity: 1; }
+    .overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+    .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 8vw, 60px); margin-bottom: 15px; }
+
+    /* --- FOOTER --- */
+    footer { background: var(--chocolate); color: white; padding: 60px 5%; }
+    .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+
+    /* =========================================
+       RESPONSIVE MEDIA QUERIES
+    ========================================= */
+
+    /* For Tablets (1024px and down) */
+    @media (max-width: 1024px) {
+        .grid-15 { grid-template-columns: repeat(3, 1fr); } /* 3 columns */
+        header { padding: 20px 3%; }
+        nav ul { gap: 12px; }
+    }
+
+    /* For Small Tablets / Large Phones (768px and down) */
+    @media (max-width: 768px) {
+        header { flex-direction: column; text-align: center; gap: 20px; }
+        nav ul { flex-wrap: wrap; justify-content: center; }
+        .grid-15 { grid-template-columns: repeat(2, 1fr); } /* 2 columns */
+        .party-2 { flex-direction: column; padding: 40px 5%; gap: 30px; }
+        .p2-img { height: 300px; width: 100%; }
+    }
+
+    /* For Mobile Phones (480px and down) */
+    @media (max-width: 480px) {
+        .grid-15 { grid-template-columns: repeat(1, 1fr); } /* 1 column (Full Width) */
+        .hero-text h1 { font-size: 28px; }
+        .btn-all { padding: 8px 20px; font-size: 12px; }
+        .submenu { position: static; box-shadow: none; border: none; width: 100%; text-align: center; }
+    }
+
+    @keyframes fadeInSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+    // PART 1 Slideshow
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+    function rotateSlides() {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }
+    setInterval(rotateSlides, 5000);
+
+    // Dynamic Grid Function
+    function populateGrid(containerId, category, imgSeed) {
+        const grid = document.getElementById(containerId);
+        if(!grid) return;
+        for(let i=1; i<=15; i++) {
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="c-img" style="background-image: url('https://picsum.photos/seed/${imgSeed + i}/400/250')"></div>
+                    <div class="c-body">
+                        <span>${category}</span>
+                        <h4>Exploring the future of ${category.toLowerCase()} in Akejo Media...</h4>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    // Run the functions
+    populateGrid('dynamicGrid', 'News', 50);
+    populateGrid('marketGrid', 'Market', 300);
+    populateGrid('travelGrid', 'Travel', 400);
+</script>
+
+</body>
+</html>
